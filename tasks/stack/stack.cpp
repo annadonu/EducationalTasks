@@ -9,15 +9,7 @@ Stack::~Stack() { clear(); }
 
 void Stack::push(int32_t value)
 {
-    if(empty())
-    {
-        head_ = new Node(value, nullptr);
-    }
-    else
-    {
-        Node* current = new Node(value, head_);
-        head_ = current;
-    }
+    head_ = new Node(value, head_); 
     ++size_;
 }
 
