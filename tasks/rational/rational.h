@@ -1,19 +1,19 @@
 #ifndef RATIONAL_H_
 #define RATIONAL_H_
 
-
-#include <stdexcept>
+#include <cstdint>
 #include <iostream>
 #include <numeric>
+#include <stdexcept>
 
-class RationalDivisionByZero : public std::runtime_error {
+class RationalDivisionByZero: public std::runtime_error
+{
 public:
-    RationalDivisionByZero() : std::runtime_error("RationalDivisionByZero")
-    {
-    }
+    RationalDivisionByZero(): std::runtime_error("RationalDivisionByZero") {}
 };
 
-class Rational {
+class Rational
+{
 public:
     Rational();
 
@@ -37,7 +37,7 @@ public:
 
     friend Rational& operator--(Rational& ratio);
 
-    friend std::istream& operator>>(std::istream& is, Rational& ratio);
+    friend std::istream& operator>>(std::istream& ist, Rational& ratio);
 
 private:
     void set(int64_t numer, int64_t denom);
@@ -78,7 +78,7 @@ bool operator==(const Rational& lhs, const Rational& rhs);
 
 bool operator!=(const Rational& lhs, const Rational& rhs);
 
-std::ostream& operator<<(std::ostream& os, const Rational& ratio);
+std::ostream& operator<<(std::ostream& ost, const Rational& ratio);
 
+#endif  // RATIONAL_H_
 
-#endif // RATIONAL_H_
