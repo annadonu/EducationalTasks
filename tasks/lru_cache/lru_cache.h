@@ -1,12 +1,14 @@
 #ifndef SAFE_ARITHMETIC_H_
 #define SAFE_ARITHMETIC_H_
 
-
 #include <cstddef>
+#include <list>
 #include <optional>
 #include <string>
+#include <unordered_map>
 
-class LRUCache {
+class LRUCache
+{
 public:
     explicit LRUCache(size_t capacity);
 
@@ -26,8 +28,25 @@ public:
 
 private:
     size_t capacity_;
-    // Your code goes here
+
+    struct Node
+    {
+        std::string key;
+        int value;
+    };
+
+    struct MapValue
+    {
+        std::list<Node>::iterator iter;
+        bool pinned;
+    };
+
+    std::unordered_map<std::string, MapValue> map_;
+    std::list<Node> unpinned_;
+    std::list<Node> pinned_;
+
+    void deleteOldest();
 };
 
+#endif  // SAFE_ARITHMETIC_H_
 
-#endif // SAFE_ARITHMETIC_H_
